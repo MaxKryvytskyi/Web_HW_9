@@ -3,7 +3,7 @@ import scrapy
 
 class QuoteSpider(scrapy.Spider):
     name = "quote"
-    custom_settings = {"FEED_FORMAT" : "json", "FEED_URI" : "Load_mongoDB/quote.json"}
+    custom_settings = {"FEED_FORMAT" : "json", "FEED_URI" : "Load_mongoDB/quotes.json"}
     allowed_domains = ["quotes.toscrape.com"]
     start_urls = ["https://quotes.toscrape.com"]
 

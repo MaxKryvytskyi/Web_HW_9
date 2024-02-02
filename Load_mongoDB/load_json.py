@@ -4,10 +4,10 @@ from connect_db import connect
 
 
 
-with open("Load_mongoDB/author.json", "r+", encoding='utf-8') as file:
+with open("Load_mongoDB/authors.json", "r+", encoding='utf-8') as file:
     authors_data = json.load(file)
 
-with open("Load_mongoDB/quote.json", "r+", encoding='utf-8') as file:
+with open("Load_mongoDB/quotes.json", "r+", encoding='utf-8') as file:
     quotes_data = json.load(file)
 
 for author_data in authors_data:

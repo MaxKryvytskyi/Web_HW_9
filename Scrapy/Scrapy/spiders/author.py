@@ -3,7 +3,7 @@ import scrapy
 
 class AuthorSpider(scrapy.Spider):
     name = "author"
-    custom_settings = {"FEED_FORMAT" : "json", "FEED_URI" : "Load_mongoDB/author.json"}
+    custom_settings = {"FEED_FORMAT" : "json", "FEED_URI" : "Load_mongoDB/authors.json"}
     allowed_domains = ["quotes.toscrape.com"]
     start_urls = ["https://quotes.toscrape.com"]
     author_url = []
