@@ -3,7 +3,7 @@ from scrapy.utils.project import get_project_settings
 from Scrapy.Scrapy.spiders.author import AuthorSpider
 from Scrapy.Scrapy.spiders.quote import QuoteSpider
 
-# Имя проекта, где `myproject` - это имя вашего Scrapy проекта
+# Имя проекта
 project_name = 'Scrapy'
 
 # Инициализация настроек проекта
