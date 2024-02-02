@@ -1,53 +1,22 @@
-import requests
-from bs4 import BeautifulSoup
-from sqlalchemy.engine import create_engine
-from sqlalchemy.orm import sessionmaker
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+from Scrapy.Scrapy.spiders.author import AuthorSpider
+from Scrapy.Scrapy.spiders.quote import QuoteSpider
 
-from model import Book, Base
+# Имя проекта, где `myproject` - это имя вашего Scrapy проекта
+project_name = 'Scrapy'
 
+# Инициализация настроек проекта
+settings = get_project_settings()
 
-def parse_data():
-    rate_to_number = {
-        'One': 1,
-        'Two': 2,
-        'Three': 3,
-        'Four': 4,
-        'Five': 5
-    }
-    url = 'http://books.toscrape.com/'
-    store_ = []
-    html_doc = requests.get(url)
+# Инициализация процесса краулера
+process = CrawlerProcess(settings)
 
-    if html_doc.status_code == 200:
-        soup = BeautifulSoup(html_doc.content, 'html.parser')
-        books = soup.select('section')[0].find_all('article', attrs={'class': 'product_pod'})
-        for book in books:
-            img_url = f"{url}{book.find('img')['src']}"
-            rating = rate_to_number.get(book.find('p', attrs={'class': 'star-rating'})['class'][1])
-            title = book.find('h3').find('a')['title']
-            price = float(book.find('p', attrs={'class': 'price_color'}).text[1:])
-            store_.append({
-                'img_url': img_url,
-                'rating': rating,
-                'title': title,
-                'price': price
-            })
+# Запуск первого паука
+process.crawl(AuthorSpider, project_name=project_name)
 
-    return store_
+# Запуск второго паука
+process.crawl(QuoteSpider, project_name=project_name)
 
-
-if __name__ == '__main__':
-    store = parse_data()
-    engine = create_engine("sqlite:///:memory:")
-    Base.metadata.create_all(engine)
-    Base.metadata.bind = engine
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    for el in store:
-        book = Book(img_url=el.get('img_url'), rating=el.get('rating'), title=el.get('title'), price=el.get('price'))
-        session.add(book)
-    session.commit()
-    books = session.query(Book).all()
-    for b in books:
-        print(vars(b))
-    session.close()
+# Запуск всех пауков
+process.start()
