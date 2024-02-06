@@ -1,9 +1,8 @@
-from datetime import datetime
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from Scrapy.Scrapy.spiders.author import AuthorSpider
 from Scrapy.Scrapy.spiders.quote import QuoteSpider
-from Beautiful_Soup_4.parser_BS4 import main as start_bs4
+from Beautiful_Soup_4.main_BS4 import main as start_bs4
 
 def start_scrapy(url):
     # Имя проекта
@@ -36,24 +35,20 @@ def main():
         match cases:
             case "scrapy" | "sc":
                 url = input("Enter URL: ")
-                start = datetime.now()
                 start_scrapy(url)
-                end = datetime.now()
-                print(f"{end-start}")
 
-                print(f"\nThe scraper takes {end-start}, thank you for waiting.")
-                print("You can find the data here --> Load_mongoDB\Json <--")
+                print(f"\nScraper end, thank you for waiting.")
+                print("You can find the data here --> Load_mongoDB\Json <--\n")
+                break
 
             case "beautifulsoup4" | "bs4":
                 url = input("Enter URL: ")
-                start = datetime.now()
                 start_bs4(url)
-                end = datetime.now()
-                print(f"{end-start}")
                 
-                print(f"\nThe scraper takes {end-start}, thank you for waiting.")
-                print("You can find the data here --> Load_mongoDB\Json_BS4 <--")
-            
+                print(f"\nScraper end, thank you for waiting.")
+                print("You can find the data here --> Load_mongoDB\Json_BS4 <--\n")
+                break
+
             case "exit":
                 print("Goodbye!")
                 break
