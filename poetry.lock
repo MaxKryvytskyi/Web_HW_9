@@ -631,6 +631,16 @@ packaging = "*"
 w3lib = ">=1.19.0"
 
 [[package]]
+name = "progressbar"
+version = "2.5"
+description = "Text progress bar library for Python."
+optional = false
+python-versions = "*"
+files = [
+    {file = "progressbar-2.5.tar.gz", hash = "sha256:5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63"},
+]
+
+[[package]]
 name = "protego"
 version = "0.3.0"
 description = "Pure-Python robots.txt parser with support for modern conventions"
@@ -1228,4 +1238,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "2de4abbaa74016c347feb8e5d42283a140e082474ac9fa2a5e0f8187df7d1f36"
+content-hash = "83825a8dfa7b31ea73fa73e0f2e115ad8c999f519d2570369fc4dc379d4b4d28"
